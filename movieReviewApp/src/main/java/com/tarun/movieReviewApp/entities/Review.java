@@ -14,17 +14,15 @@ import lombok.Setter;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reviewId")
     private Long reviewId;
+    private Long movieId;
+    @Column(name = "reviewer",nullable = false)
+    private String reviewerName;
     @Column(name = "comment",nullable = false)
     private String comment;
     @Column(name = "rating")
     private int rating;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 }

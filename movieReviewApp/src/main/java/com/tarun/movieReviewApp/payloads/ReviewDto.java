@@ -9,6 +9,10 @@ import lombok.Setter;
 @Getter
 public class ReviewDto {
     private Long reviewId;
+    private Long movieId;
+    @NotBlank
+    @Size(min = 3,message = "min size of reviewerName is 3 chars")
+    private String reviewerName;
     @NotBlank
     @Size(min = 3,message = "min size is 3 chars")
     private String comment;

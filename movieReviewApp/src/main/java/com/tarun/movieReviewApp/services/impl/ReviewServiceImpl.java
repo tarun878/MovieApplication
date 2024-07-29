@@ -1,10 +1,7 @@
 package com.tarun.movieReviewApp.services.impl;
 
-
-import com.tarun.movieReviewApp.entities.Movie;
 import com.tarun.movieReviewApp.entities.Review;
 import com.tarun.movieReviewApp.exception.ResourceNotFoundException;
-import com.tarun.movieReviewApp.payloads.MovieDto;
 import com.tarun.movieReviewApp.payloads.ReviewDto;
 import com.tarun.movieReviewApp.repository.ReviewRepo;
 import com.tarun.movieReviewApp.services.ReviewService;
@@ -33,6 +30,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         Review rev = this.reviewRepo.findById(reviewId)
                 .orElseThrow(()-> new ResourceNotFoundException("Review","Review Id",reviewId));
+        rev.setReviewerName(reviewDto.getReviewerName());
         rev.setComment(reviewDto.getComment());
         rev.setRating(reviewDto.getRating());
         Review updatedRev = this.reviewRepo.save(rev);
@@ -59,5 +57,10 @@ public class ReviewServiceImpl implements ReviewService {
         List<Review> reviews = this.reviewRepo.findAll();
         List<ReviewDto> reviewDtos = reviews.stream().map((rev)->this.modelMapper.map(rev, ReviewDto.class)).collect(Collectors.toList());
         return reviewDtos;
+    }
+
+    @Override
+    public List<ReviewDto> getReviewsByMovieId(Long movieId) {
+        return reviewRepo.findByMovieId(movieId);
     }
 }

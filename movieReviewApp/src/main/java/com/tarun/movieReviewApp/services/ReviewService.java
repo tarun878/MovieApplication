@@ -1,5 +1,4 @@
 package com.tarun.movieReviewApp.services;
-
 import com.tarun.movieReviewApp.payloads.ReviewDto;
 
 import java.util.List;
@@ -15,6 +14,11 @@ public interface ReviewService {
     ReviewDto getReview(Long reviewId);
     //get all
     List<ReviewDto> getReviews();
+
+    List<ReviewDto> getReviewsByMovieId(Long movieId);
+
+
+
 
 
 }
