@@ -1,28 +1,60 @@
 package com.tarun.movieReviewApp.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "reviews")
-@NoArgsConstructor
-@Getter
-@Setter
-
 public class Review {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reviewId")
     private Long reviewId;
-    private Long movieId;
-    @Column(name = "reviewer",nullable = false)
-    private String reviewerName;
-    @Column(name = "comment",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name ="user_id")
+    private User user;
     private String comment;
-    @Column(name = "rating")
     private int rating;
+    private Long movieId;
+    public Review(){}
 
+    // Getters and setters
 
+    public Long getReviewId() {
+        return reviewId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
 }
