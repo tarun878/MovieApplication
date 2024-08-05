@@ -1,0 +1,93 @@
+.review-container {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text for contrast */
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.review-container h2,
+.review-container h3 {
+  color: #f39c12; /* Gold color for headings */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-container input[type="text"],
+.review-container input[type="number"],
+.review-container textarea {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #fff;
+}
+
+.review-container textarea {
+  height: 80px;
+  resize: none;
+}
+
+.review-container button {
+  background-color: #f39c12; /* Gold color for buttons */
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-container button:hover {
+  background-color: #e67e22; /* Slightly darker gold on hover */
+}
+
+.review-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-container ul li {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-container ul li:hover {
+  background-color: #333; /* Dark grey on hover */
+}
+
+.review-container p {
+  text-align: center;
+  font-size: 16px;
+}
+
+.review-container img {
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+}
+
+.review-container .message {
+  color: #e74c3c; /* Red color for error messages */
+  text-align: center;
+  margin-top: 20px;
+}
+
+.review-container .button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
