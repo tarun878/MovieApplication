@@ -13,11 +13,16 @@ const RegisterPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError(null); // Clear any previous error message
+
     try {
       await register(username, password, email);
-      navigate("/login");
+      navigate("/login"); // Navigate to home page after successful registration
     } catch (err) {
-      setError(err.message);
+      // Improved error handling
+      const errorMessage = err || "Registration failed. Please try again.";
+      console.error("Registration error:", errorMessage);
+      setError(errorMessage);
     }
   };
 
@@ -33,17 +38,17 @@ const RegisterPage = () => {
           required
         />
         <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Register</button>

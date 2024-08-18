@@ -12,11 +12,16 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(null); // Clear any previous error message
+
     try {
       await login(username, password);
-      navigate("/");
+      navigate("/"); // Navigate to home page after successful login
     } catch (err) {
-      setError(err.message);
+      // Improved error handling
+      const errorMessage = err || "Login failed. Please try again.";
+      console.error("Login error:", errorMessage);
+      setError(errorMessage);
     }
   };
 

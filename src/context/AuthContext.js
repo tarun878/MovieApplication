@@ -18,16 +18,23 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        setUser({ username: data.username, email: data.email });
-        setToken(data.token);
-        localStorage.setItem("token", data.token);
+        if (data.successcode === "success") {
+          setUser({ username: data.username, email: data.email });
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
+        } else {
+          console.error("Login error:", data.successcode || data.successcode);
+          throw data.successcode;
+        }
       } else {
-        const errorData = await response.text();
-        console.error("Login error:", errorData);
-        throw new Error("Login failed: " + errorData);
+        const result = await response.json();
+        const errorMessage = result.message || "Login failed.";
+        console.error("Login error:", errorMessage);
+        throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Login error:", error.message || error);
+      throw error;
     }
   };
 
@@ -42,14 +49,21 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        await login(username, password);
+        const result = await response.json();
+        if (result.successcode === "success") {
+          // await login(username, password);
+        } else {
+          throw result.successcode;
+        }
       } else {
-        const errorData = await response.text();
-        console.error("Registration error:", errorData);
-        throw new Error("Registration failed: " + errorData);
+        const result = await response.json();
+        const errorMessage = result.message || "Registration failed.";
+        console.error("Registration error:", errorMessage);
+        throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Registration error:", error);
+      console.error("Registration error:", error.message || error);
+      throw error;
     }
   };
 

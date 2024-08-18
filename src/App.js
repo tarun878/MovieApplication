@@ -16,12 +16,9 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<ProtectedRoute element={Home} />} />
-        <Route
-          path="/movies/:type"
-          element={<ProtectedRoute element={MovieList} />}
-        />
-        <Route path="/movie/:id" element={<ProtectedRoute element={Movie} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/movies/:type" element={<MovieList />} />
+        <Route path="/movie/:id" element={<Movie />} />
         <Route path="/reviews" element={<ProtectedRoute element={Review} />} />
 
         <Route path="/register" element={<RegisterPage />} />

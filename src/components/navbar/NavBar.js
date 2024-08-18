@@ -10,19 +10,19 @@ const Navbar = () => {
     <nav className="navbar">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">HOME</Link>
         </li>
         <li>
-          <Link to="/movies/popular">Popular</Link>
+          <Link to="/movies/popular">POPULAR</Link>
         </li>
         <li>
-          <Link to="/movies/top_rated">Top Rated</Link>
+          <Link to="/movies/top_rated">TOP RATED</Link>
         </li>
         <li>
-          <Link to="/movies/upcoming">upcoming</Link>
+          <Link to="/movies/upcoming">UPCOMING</Link>
         </li>
         <li>
-          <Link to="/reviews">Reviews</Link>
+          <Link to="/reviews">REVIEWS</Link>
         </li>
 
         {isAuthenticated() ? (
@@ -31,16 +31,16 @@ const Navbar = () => {
               <span>Welcome,{user?.username || "User"}</span>
             </li>
             <li>
-              <button onClick={logout}>Logout</button>
+              <button onClick={logout}>LOGOUT</button>
             </li>
           </>
         ) : (
           <>
             <li>
-              <Link to="/register">Register</Link>
+              <Link to="/register">REGISTER</Link>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">LOGIN</Link>
             </li>
           </>
         )}

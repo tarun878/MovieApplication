@@ -48,6 +48,17 @@ const Movie = () => {
             <div className="movie__tagline">
               {currentMovieDetail ? currentMovieDetail.tagline : ""}
             </div>
+            <div className="movie__rating">
+              {currentMovieDetail
+                ? currentMovieDetail.vote_average.toFixed(1)
+                : ""}{" "}
+              <i class="fas fa-star" />
+              <span className="movie__voteCount">
+                {currentMovieDetail
+                  ? "(" + currentMovieDetail.vote_count + ") votes"
+                  : ""}
+              </span>
+            </div>
 
             <div className="movie__runtime">
               {currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}

@@ -45,6 +45,10 @@ const Home = () => {
 
                 <div className="posterImage__runtime">
                   {movie ? movie.release_date : ""}
+                  <span className="posterImage__rating">
+                    {movie ? movie.vote_average.toFixed(1) : ""}
+                    <i className="fas fa-star" />{" "}
+                  </span>
                 </div>
                 <div className="posterImage__description">
                   {movie ? movie.overview : ""}
