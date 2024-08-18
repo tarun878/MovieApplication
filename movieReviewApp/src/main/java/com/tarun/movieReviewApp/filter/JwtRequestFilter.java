@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class JwtRequestFilter extends OncePerRequestFilter
 {
@@ -35,7 +36,9 @@ public class JwtRequestFilter extends OncePerRequestFilter
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwtToken = authorizationHeader.substring(7);
             try {
-                username = jwtUtil.extractUsername(jwtToken);
+                if(Objects.nonNull(jwtToken)){
+                    username = jwtUtil.extractUsername(jwtToken);
+                }
             } catch (Exception e) {
                 System.out.println("Invalid Jwt token" + e.getMessage());
             }
@@ -45,7 +48,7 @@ public class JwtRequestFilter extends OncePerRequestFilter
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-         if (jwtUtil.validateToken(jwtToken, userDetails)){
+         if (Objects.nonNull(jwtToken) && jwtUtil.validateToken(jwtToken, userDetails)){
              UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                      userDetails, null,userDetails.getAuthorities());
              SecurityContextHolder.getContext().setAuthentication(authentication);

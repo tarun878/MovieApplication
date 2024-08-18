@@ -14,6 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,11 +37,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto registerUser(UserDto userDto) {
         if (userRepo.findByUsername(userDto.getUsername()).isPresent()) {
-            throw new RuntimeException("Username already taken");
+            return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), null, ("Username already taken"));
         }
 
         if (userRepo.findByEmail(userDto.getEmail()).isPresent()) {
-            throw new RuntimeException("Email already taken");
+            return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), null, ("Email already taken"));
         }
 
         User user = new User();
@@ -50,7 +52,7 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
 
         String token = jwtUtil.generatedToken(user.getUsername());
-        return new UserResponseDto(user.getUsername(), user.getEmail(), token);
+        return new UserResponseDto(user.getUsername(), user.getEmail(), token, "success");
     }
 
     @Override
@@ -63,16 +65,19 @@ public class UserServiceImpl implements UserService {
             if (authentication.isAuthenticated()) {
                 String token = jwtUtil.generatedToken(userDto.getUsername());
 
-                User user = userRepo.findByUsername(userDto.getUsername())
-                        .orElseThrow(() -> new RuntimeException("User not found"));
+//                User user = userRepo.findByUsername(userDto.getUsername())
+//                        .orElseThrow(() -> new RuntimeException("User not found"));
 
-                return new UserResponseDto(user.getUsername(), user.getEmail(), token);
+                if(Objects.isNull(userRepo.findByUsername(userDto.getUsername()))){
+                    return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), token, "");
+                }
+
+                return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), token, "success");
             }
         } catch (AuthenticationException e) {
-            throw new RuntimeException("Invalid username or password");
+            return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), null, "Invalid username or password");
         }
-
-        throw new RuntimeException("Login failed");
+        return new UserResponseDto(userDto.getUsername(), userDto.getEmail(), null, "Login failed");
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.tarun.movieReviewApp.payloads;
 
+import com.tarun.movieReviewApp.entities.Review;
+
 public class ApiResponse<T> {
     private boolean success;
     private String message;
     private T data;
 
-    public ApiResponse() {
+    public ApiResponse(Review review, String reviewFound) {
     }
 
     public ApiResponse(boolean success, String message, T data) {

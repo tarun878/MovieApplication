@@ -12,8 +12,3 @@ public interface ReviewService {
     ApiResponse<ReviewDto> updateReview(Long reviewId, ReviewDto reviewDetails);
     ApiResponse<Void> deleteReview(Long reviewId);
 }
-
-
-
-
-
