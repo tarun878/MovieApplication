@@ -10,3 +10,6 @@
 ![dropdown](https://github.com/user-attachments/assets/695bdbc6-0917-42e3-b2ad-e41afd4f52b9)
 ![movie review page](https://github.com/user-attachments/assets/10be2b16-f4eb-4aa0-ba0a-4cd77f13b9ab)
 ![show reviews](https://github.com/user-attachments/assets/3b90f519-9c9a-4ab8-82e6-577d198c9cfa)
+![responsive at 75%](https://github.com/user-attachments/assets/3cf9b296-7deb-49b8-97b0-5dc70014a1d5)
+![responsive](https://github.com/user-attachments/assets/4e40a6c6-5d12-4521-a20a-516dc1c4b047)
+![resp](https://github.com/user-attachments/assets/8ab73e3c-c3ec-4895-bb78-56000239b6a4)
